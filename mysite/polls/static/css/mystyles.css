@@ -1,0 +1,21 @@
+
+body{
+    background-color:grey;
+    width:100%;
+}
+
+#container{
+    padding:5%;
+    margin:5%;
+    background-color:white;
+
+}
+
+a:hover{
+    color:red !important;
+}
+
+#myBtn{
+    padding-bottom:2%;
+    margin-bottom:3%;
+}
