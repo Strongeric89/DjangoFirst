@@ -1,4 +1,4 @@
-
+try{
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -36,3 +36,8 @@ beginAtZero:true
 }
 }
 });
+
+}
+catch(error){
+    console.log('chart error')
+}

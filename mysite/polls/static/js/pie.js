@@ -1,5 +1,6 @@
 
 //pie
+try{
 var ctxP = document.getElementById("pieChart").getContext('2d');
 var myPieChart = new Chart(ctxP, {
     type: 'pie',
@@ -17,3 +18,7 @@ var myPieChart = new Chart(ctxP, {
         responsive: true
     }
 });
+}catch(error){
+    console.log('pie chart error');
+}
+

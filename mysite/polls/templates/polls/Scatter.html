@@ -1,0 +1,101 @@
+<div id="container">
+    <h2>ScatterChart</h2>
+    <canvas id="scatterChart" width="400" height="400"></canvas>
+
+</div>
+
+<script>
+    //getting data in from an endpoint dynamically
+
+    var endpoint = '/polls/api/chart/data';
+    var dynamic_data = [];
+    var labels = [];
+
+    $.ajax({
+        method:"GET",
+        url: endpoint,
+        success: function(data){
+
+
+            labels = data.labels
+            dynamic_data = data.values
+            console.log(labels)
+
+            var ctxP = document.getElementById("scatterChart").getContext('2d');
+            var myPieChart = new Chart(ctxP, {
+            type: 'scatter',
+            data: {
+             datasets: [{
+            label: 'Scatter Dataset',
+               backgroundColor: 'green',
+            data: [{
+                x: 10,
+                y: 20
+            }, {
+                x: 15,
+                y: 10
+            }, {
+                x: 300,
+                y: 550
+            },
+            {
+                x: 100,
+                y: 200
+            }, {
+                x: 154,
+                y: 104
+            }, {
+                x: 340,
+                y: 554
+            },
+            {
+                x: 140,
+                y: 240
+            }, {
+                x: 145,
+                y: 140
+            }, {
+                x: 340,
+                y: 545
+            }
+            ]
+        },
+          {
+                            label: "My Second dataset",
+                            fillColor: "#F7464A",
+                              backgroundColor: 'red',
+                            strokeColor: "#F7464A",
+                            pointColor: "#F7464A",
+                            pointStrokeColor: "#F7464A",
+                            pointHighlightFill: "#F7464A",
+                            pointHighlightStroke: "#F7464A",
+                            data:[{
+                x: 100,
+                y: 200
+            }, {
+                x: 150,
+                y: 100
+            }, {
+                x: 300,
+                y: 550
+            }]
+                        }
+        ]
+    },
+     options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
+
+
+        },
+        error: function(err){
+            console.log('error getting data with ajax' + err)
+        }
+    });
+</script>

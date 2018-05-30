@@ -1,0 +1,22 @@
+{% extends 'polls/base.html' %}
+{% block main_content %}
+{% load staticfiles %}
+
+
+
+
+    <h1> {{question.question_text}}</h1>
+
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>{{choice.choice_text}}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    {% include "polls/charts.html" %}
+
+
+{% endblock %}
+
