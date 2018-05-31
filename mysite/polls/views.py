@@ -43,11 +43,15 @@ class ChartData(APIView):
     permission_classes = []
 
     def get(self, request, format=None):
+        users = User.objects.all().count()
+        print( User.objects.all())
+
+
         labels = ["eric", "Laura", "Ger","Mairead"]
         data = {
             "labels":labels,
             "values": [10,20,30,40],
-            "user": User.objects.all().count(),
+            "user": users,
             "questions": Question.objects.all().count(),
             "choices":Choice.objects.all().count()
         }

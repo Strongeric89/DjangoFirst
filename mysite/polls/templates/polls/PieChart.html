@@ -1,0 +1,48 @@
+<div id="container">
+    <h2>PieChart</h2>
+    <canvas id="pieChart" style="max-width: 100%;"></canvas>
+
+</div>
+
+<script>
+    //getting data in from an endpoint dynamically
+
+    var endpoint = '/polls/api/chart/data';
+    var dynamic_data = [];
+    var labels = [];
+
+    $.ajax({
+        method:"GET",
+        url: endpoint,
+        success: function(data){
+
+
+            labels = data.labels
+            dynamic_data = data.values
+            console.log(labels)
+
+            var ctxP = document.getElementById("pieChart").getContext('2d');
+            var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+            labels: labels,
+        datasets: [
+            {
+                data: dynamic_data,
+                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+            }
+        ]
+    },
+    options: {
+        responsive: true
+    }
+});
+
+
+        },
+        error: function(err){
+            console.log('error getting data with ajax' + err)
+        }
+    });
+</script>
